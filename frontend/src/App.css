@@ -1477,3 +1477,346 @@ table {
     text-align: left;
   }
 }
+/* =========================================================
+   UI POLISH OVERRIDES
+========================================================= */
+
+:root {
+  --ui-primary: #2563eb;
+  --ui-primary-dark: #1d4ed8;
+  --ui-bg: #f1f5f9;
+  --ui-surface: #ffffff;
+  --ui-border: #e2e8f0;
+  --ui-text: #0f172a;
+  --ui-muted: #64748b;
+}
+
+body {
+  background: var(--ui-bg);
+  color: #1f2937;
+}
+
+/* Headers */
+
+.admin-dashboard > header,
+.employee-dashboard > header {
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255, 255, 255, 0.14),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #0f2f74,
+      #1d4ed8,
+      #2563eb
+    );
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.15);
+}
+
+.admin-dashboard > header h1,
+.employee-dashboard > header h1 {
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* Main sections */
+
+.admin-dashboard main > section,
+.employee-dashboard main > section {
+  border: 1px solid var(--ui-border);
+
+  box-shadow:
+    0 4px 16px rgba(15, 23, 42, 0.07);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-dashboard main > section:hover,
+.employee-dashboard main > section:hover {
+  box-shadow:
+    0 10px 28px rgba(15, 23, 42, 0.1);
+}
+
+/* Dashboard cards */
+
+.dashboard-card {
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid var(--ui-border);
+
+  box-shadow:
+    0 3px 12px rgba(15, 23, 42, 0.06);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.dashboard-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 4px;
+  height: 100%;
+
+  background: var(--ui-primary);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+.dashboard-card h3 {
+  color: var(--ui-muted);
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.4px;
+}
+
+.dashboard-card p {
+  color: var(--ui-text);
+
+  font-weight: 800;
+}
+
+/* Navigation */
+
+.admin-navigation,
+.employee-navigation {
+  border: 1px solid var(--ui-border);
+
+  box-shadow:
+    0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.admin-navigation button,
+.employee-navigation button {
+  border-radius: 9px;
+
+  transition:
+    all 0.2s ease;
+}
+
+.admin-navigation button:hover,
+.employee-navigation button:hover {
+  border-color: #93c5fd;
+
+  background: #eff6ff;
+
+  color: var(--ui-primary);
+
+  transform: translateY(-1px);
+}
+
+.admin-navigation button.active,
+.employee-navigation button.active {
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #1d4ed8
+    );
+
+  border-color: var(--ui-primary);
+
+  color: white;
+
+  box-shadow:
+    0 5px 12px rgba(37, 99, 235, 0.22);
+}
+
+/* Forms */
+
+.admin-dashboard form input,
+.admin-dashboard form textarea,
+.admin-dashboard form select,
+.employee-dashboard form input,
+.employee-dashboard form textarea,
+.employee-dashboard form select {
+  border: 1px solid #cbd5e1;
+
+  border-radius: 9px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-dashboard form input:focus,
+.admin-dashboard form textarea:focus,
+.admin-dashboard form select:focus,
+.employee-dashboard form input:focus,
+.employee-dashboard form textarea:focus,
+.employee-dashboard form select:focus {
+  border-color: var(--ui-primary);
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Buttons */
+
+.admin-dashboard form button,
+.employee-dashboard form button {
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #1d4ed8
+    );
+
+  border-radius: 9px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 4px 10px rgba(37, 99, 235, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-dashboard form button:hover,
+.employee-dashboard form button:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 7px 15px rgba(37, 99, 235, 0.25);
+}
+
+/* Tables */
+
+.admin-dashboard table,
+.employee-dashboard table {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.admin-dashboard table th,
+.employee-dashboard table th {
+  background: #0f2f74;
+
+  font-weight: 700;
+}
+
+.admin-dashboard table tbody tr,
+.employee-dashboard table tbody tr {
+  transition:
+    background 0.15s ease;
+}
+
+.admin-dashboard table tbody tr:hover,
+.employee-dashboard table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* Profile */
+
+.profile-card {
+  border: 1px solid var(--ui-border);
+
+  box-shadow:
+    0 5px 18px rgba(15, 23, 42, 0.07);
+}
+
+.profile-row {
+  border-bottom:
+    1px solid var(--ui-border);
+}
+
+.salary-value {
+  color: var(--ui-primary);
+
+  font-weight: 800;
+}
+
+/* Login */
+
+.login-container {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(37, 99, 235, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(59, 130, 246, 0.1),
+      transparent 30%
+    ),
+    #eef3f9;
+}
+
+.login-card {
+  border: 1px solid var(--ui-border);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 18px 50px rgba(15, 23, 42, 0.14);
+}
+
+.login-card button {
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #1d4ed8
+    );
+
+  border-radius: 9px;
+
+  box-shadow:
+    0 5px 13px rgba(37, 99, 235, 0.22);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-card button:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 18px rgba(37, 99, 235, 0.28);
+}
+
+/* Status badges */
+
+.account-status,
+.leave-status {
+  border-radius: 999px;
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+  .admin-dashboard main > section,
+  .employee-dashboard main > section {
+    border-radius: 12px;
+  }
+
+  .dashboard-card {
+    border-radius: 13px;
+  }
+
+  .login-card {
+    border-radius: 15px;
+  }
+}
