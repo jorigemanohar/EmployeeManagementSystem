@@ -1,376 +1,246 @@
-\# Employee Management \& Payroll System
-
-
-
-A full-stack \*\*Employee Management and Payroll System\*\* built using \*\*React.js, Spring Boot, MySQL, and JWT Authentication\*\*.
-
-
-
-This project is designed to manage employees, departments, attendance, leave requests, payroll, salary slips, and role-based user access through a secure REST API.
-
-
-
-\---
-
-
-
-\## 📌 Project Overview
-
-
-
-The Employee Management \& Payroll System is a web-based application that provides separate functionality for \*\*ADMIN\*\* and \*\*EMPLOYEE\*\* users.
-
-
-
-The system allows administrators to manage employee information, departments, attendance, leave requests, and payroll records, while employees can access their own profile, attendance, leave information, payroll details, and salary slips.
-
-
-
-\---
-
-
-
-\## ✨ Features
-
-
-
-\### 🔐 Authentication \& Security
-
-
-
-\- JWT-based authentication
-
-\- Spring Security integration
-
-\- Role-based authorization
-
-\- ADMIN and EMPLOYEE roles
-
-\- BCrypt password hashing
-
-\- Secure employee account creation
-
-\- Protected REST APIs
-
-\- Stateless authentication
-
-\- CORS configuration
-
-\- Authentication validation
-
-\- Unauthorized request protection
-
-
-
-\---
-
-
-
-\### 👨‍💼 Employee Management
-
-
-
-\- Add new employees
-
-\- View all employees
-
-\- View employee details
-
-\- Update employee information
-
-\- Delete employees
-
-\- Search employees
-
-\- Create employee login accounts
-
-\- Assign employee information to departments
-
-
-
-\---
-
-
-
-\### 🏢 Department Management
-
-
-
-\- Create departments
-
-\- View departments
-
-\- Update departments
-
-\- Delete departments
-
-\- Manage department information
-
-
-
-\---
-
-
-
-\### 🕒 Attendance Management
-
-
-
-\- Mark employee attendance
-
-\- View attendance records
-
-\- Update attendance records
-
-\- Delete attendance records
-
-\- Track attendance by employee
-
-\- Prevent duplicate attendance records for the same employee and date
-
-
-
-\---
-
-
-
-\### 📝 Leave Management
-
-
-
-\- Submit leave requests
-
-\- View leave requests
-
-\- Update leave requests
-
-\- Delete leave requests
-
-\- Approve leave requests
-
-\- Reject leave requests
-
-\- Track leave status
-
-\- Employee-specific leave access
-
-
-
-\---
-
-
-
-\### 💰 Payroll Management
-
-
-
-\- Create payroll records
-
-\- View payroll records
-
-\- Update payroll records
-
-\- Delete payroll records
-
-\- Manage salary components
-
-\- Calculate net salary
-
-\- Validate payroll information
-
-\- Prevent duplicate payroll records
-
-\- Prevent invalid negative net salary
-
-
-
-\---
-
-
-
-\### 📄 Salary Slip
-
-
-
-\- Generate employee salary slips
-
-\- Download salary slips as PDF
-
-\- Display salary information
-
-\- Employee-specific salary slip access
-
-
-
-\---
-
-
-
-\### 📊 Dashboard
-
-
-
-\#### ADMIN Dashboard
-
-
-
-Displays information related to:
-
-
-
-\- Employees
-
-\- Departments
-
-\- Attendance
-
-\- Leave
-
-\- Payroll
-
-
-
-\#### EMPLOYEE Dashboard
-
-
-
-Provides access to:
-
-
-
-\- Employee profile
-
-\- Attendance
-
-\- Leave requests
-
-\- Payroll information
-
-\- Salary slips
-
-
-
-\---
-
-
-
-\# 🛠️ Technology Stack
-
-
-
-\## Frontend
-
-
-
-\- React.js
-
-\- JavaScript
-
-\- HTML5
-
-\- CSS3
-
-\- Axios
-
-
-
-\## Backend
-
-
-
-\- Java
-
-\- Spring Boot
-
-\- Spring Security
-
-\- Spring Data JPA
-
-\- Hibernate
-
-\- REST APIs
-
-\- JWT Authentication
-
-\- BCrypt
-
-
-
-\## Database
-
-
-
-\- MySQL 8.0
-
-
-
-\## Development Tools
-
-
-
-\- IntelliJ IDEA
-
-\- MySQL Workbench
-
-\- Postman
-
-\- Git
-
-\- GitHub
-
-\- Maven
-
-\- npm
-
-
-
-\---
-
-
-
-\# 🏗️ System Architecture
-
-
+# Employee Management & Payroll System
+
+A full-stack web application for managing employees, departments, attendance, leave requests, payroll records, and salary slips. Built with **React, Spring Boot, MySQL, and JWT authentication**.
+
+## Project Overview
+
+The Employee Management & Payroll System provides separate functionality for administrators and employees.
+
+- **Administrators:** Manage employee records, departments, attendance, leave requests, and payroll.
+- **Employees:** Access their own profile, attendance records, leave requests, payroll information, and salary-slip PDFs.
+
+## Features
+
+### Authentication and Security
+- JWT-based authentication
+- Spring Security integration
+- Role-based access for ADMIN and EMPLOYEE users
+- BCrypt password hashing
+- Protected REST API endpoints
+- Employee account linking and validation
+
+### Employee Management
+- Create, view, update, and delete employee records
+- Search employee information
+- Associate employees with departments
+- Support employee login accounts
+
+### Department Management
+- Create, view, update, and delete departments
+- Manage department information
+
+### Attendance Management
+- Record employee attendance
+- View, update, and delete attendance records
+- Retrieve attendance by employee
+- Prevent duplicate attendance records for the same employee and date
+
+### Leave Management
+- Submit and view leave requests
+- Manage leave records
+- Approve or reject leave requests
+- Track leave status
+- Restrict employee self-service to the linked employee account
+
+### Payroll Management
+- Create, view, update, and delete payroll records
+- Manage basic salary, allowances, and deductions
+- Calculate net salary through the payroll service
+- Validate payroll data
+- Prevent duplicate payroll records for the same employee and month
+
+### Salary Slips
+- Generate salary slips in PDF format
+- Download salary-slip PDFs
+- Include employee and salary information
+- Restrict employee downloads to their own payroll records
+
+### Dashboard and Employee Self-Service
+- Separate administrator and employee functionality
+- Employee profile access
+- Employee-specific attendance, leave, and payroll information
+- Access to available salary slips
+
+## Technology Stack
+
+| Category | Technologies |
+|---|---|
+| Frontend | React, JavaScript, HTML5, CSS3 |
+| HTTP client | Axios |
+| Backend | Java, Spring Boot, Spring MVC |
+| Security | Spring Security, JWT, BCrypt |
+| Persistence | Spring Data JPA, Hibernate |
+| Database | MySQL 8.0 |
+| Backend testing | JUnit 5, Mockito, Spring Boot Test |
+| Frontend build | npm, Create React App |
+| Version control | Git, GitHub |
+| Development environment | IntelliJ IDEA |
+
+## System Architecture
 
 ```text
++--------------------------------------+
+|            React Frontend            |
+|          http://localhost:3000       |
+|                                      |
+| Login, Dashboard, Employee Features  |
++-------------------+------------------+
+                    |
+                    | REST APIs
+                    | JWT Authentication
+                    v
++--------------------------------------+
+|        Spring Boot Backend           |
+|          http://localhost:8080       |
+|                                      |
+| Controllers, Services, Security      |
+| Payroll and PDF Generation           |
++-------------------+------------------+
+                    |
+                    | Spring Data JPA
+                    | Hibernate
+                    v
++--------------------------------------+
+|             MySQL 8.0                |
+|                                      |
+|        employee_management            |
++--------------------------------------+
+```
 
-&#x20;                   ┌──────────────────────┐
+## Prerequisites
 
-&#x20;                   │    React Frontend    │
+Install the following before running the application:
 
-&#x20;                   │      Port: 3000      │
+- Java Development Kit compatible with the backend's `pom.xml`
+- MySQL 8.0
+- Node.js and npm
+- Git
 
-&#x20;                   └──────────┬───────────┘
+## Getting Started
 
-&#x20;                              │
+### 1. Clone the Repository
 
-&#x20;                              │ REST API
+```bash
+git clone https://github.com/jorigemanohar/EmployeeManagementSystem.git
+cd EmployeeManagementSystem
+```
 
-&#x20;                              │ JWT Token
+### 2. Configure MySQL
 
-&#x20;                              ▼
+Start your MySQL server and create the database:
 
-&#x20;                   ┌──────────────────────┐
+```sql
+CREATE DATABASE IF NOT EXISTS employee_management;
+```
 
-&#x20;                   │   Spring Boot API    │
+The backend datasource configuration is in `backend/src/main/resources/application.properties`.
 
-&#x20;                   │      Port: 8080      │
+It expects these environment variables:
 
-&#x20;                   └──────────┬───────────┘
+- `DB_PASSWORD` — password for the configured MySQL user
+- `JWT_SECRET` — secret used by the application's JWT configuration
 
-&#x20;                              │
+Set both variables in your local environment before starting the backend. Use your own values and **never commit real passwords or signing secrets to GitHub**.
 
-&#x20;                       JPA / Hibernate
+The current configuration uses the MySQL username `root` and connects to `localhost:3306/employee_management`. Adjust the configuration if your local MySQL setup differs.
 
-&#x20;                              │
+### 3. Start the Spring Boot Backend
 
-&#x20;                              ▼
+Open a terminal in the backend directory:
 
-&#x20;                   ┌──────────────────────┐
+```powershell
+cd backend
+.\mvnw.cmd spring-boot:run
+```
 
-&#x20;                   │    MySQL Database    │
+The API is configured to run at:
 
-&#x20;                   │ employee\_management  │
+```text
+http://localhost:8080
+```
 
-&#x20;                   └──────────────────────┘
+Keep the backend terminal running.
 
+### 4. Start the React Frontend
+
+Open a separate terminal in the frontend directory:
+
+```powershell
+cd frontend
+npm install
+npm start
+```
+
+The development server normally opens at:
+
+```text
+http://localhost:3000
+```
+
+The frontend API service is currently configured to use `http://localhost:8080/api`. Keep the backend running while using features that call the API.
+
+## Running Tests
+
+### Backend Tests
+
+From the `backend` directory, ensure MySQL is running and the required environment variables are configured. Run:
+
+```powershell
+.\mvnw.cmd clean test
+```
+
+The full backend test suite was verified with **84 tests passing, zero failures, and zero errors** in the local development environment.
+
+### Frontend Production Build
+
+From the `frontend` directory, run:
+
+```powershell
+npm run build
+```
+
+The React production build has been verified to compile successfully.
+
+### Frontend Tests
+
+From the `frontend` directory, run:
+
+```powershell
+npm test -- --watchAll=false
+```
+
+## Repository Structure
+
+```text
+EmployeeManagementSystem/
+├── backend/
+│   ├── src/
+│   │   ├── main/
+│   │   └── test/
+│   ├── pom.xml
+│   └── mvnw.cmd
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   └── services/
+│   ├── package.json
+│   └── package-lock.json
+└── README.md
+```
+
+## Project Status
+
+- Backend modules and controller tests implemented
+- Full backend test suite passing in the local development environment
+- React production build successful
+- Local login and application workflows verified in the browser
+- GitHub repository synchronized with the `main` branch
+
+**Note:** The current frontend API URL and database configuration are intended for local development. Before deploying publicly, configure environment-specific API URLs, production secrets, database access, HTTPS, and hosting settings.
+
+## Author
+
+**Manohar Jorige**
+
+GitHub: https://github.com/jorigemanohar
