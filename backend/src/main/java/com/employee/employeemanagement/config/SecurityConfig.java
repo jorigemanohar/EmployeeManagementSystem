@@ -1,5 +1,6 @@
 package com.employee.employeemanagement.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -14,6 +15,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
@@ -22,9 +24,11 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    @Value("${FRONTEND_URL:http://localhost:3000}")
+    private String frontendUrl;
+
     public SecurityConfig(
             JwtAuthenticationFilter jwtAuthenticationFilter) {
-
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
@@ -33,64 +37,30 @@ public class SecurityConfig {
             HttpSecurity http) throws Exception {
 
         http
-                // -------------------------------------------------
-                // CSRF
-                // -------------------------------------------------
                 .csrf(csrf -> csrf.disable())
-
-                // -------------------------------------------------
-                // CORS
-                // -------------------------------------------------
                 .cors(cors ->
-                        cors.configurationSource(
-                                corsConfigurationSource()
-                        )
+                        cors.configurationSource(corsConfigurationSource())
                 )
-
-                // -------------------------------------------------
-                // Stateless JWT authentication
-                // -------------------------------------------------
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(
                                 SessionCreationPolicy.STATELESS
                         )
                 )
-
-                // -------------------------------------------------
-                // Authorization rules
-                // -------------------------------------------------
                 .authorizeHttpRequests(auth -> auth
-
-                        // CORS preflight
-                        .requestMatchers(
-                                HttpMethod.OPTIONS,
-                                "/**"
-                        ).permitAll()
-
-                        // Login is public
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(
                                 HttpMethod.POST,
                                 "/api/auth/login"
                         ).permitAll()
-
-                        // User registration is ADMIN only
                         .requestMatchers(
                                 HttpMethod.POST,
                                 "/api/auth/register"
                         ).hasRole("ADMIN")
-
-                        // Employee account creation is ADMIN only
                         .requestMatchers(
                                 HttpMethod.POST,
                                 "/api/auth/create-employee-account/**"
                         ).hasRole("ADMIN")
-
-                        // Employee-only APIs
-                        .requestMatchers(
-                                "/api/employee/**"
-                        ).hasRole("EMPLOYEE")
-
-                        // Admin-only APIs
+                        .requestMatchers("/api/employee/**").hasRole("EMPLOYEE")
                         .requestMatchers(
                                 "/api/employees/**",
                                 "/api/departments/**",
@@ -98,14 +68,8 @@ public class SecurityConfig {
                                 "/api/leaves/**",
                                 "/api/payroll/**"
                         ).hasRole("ADMIN")
-
-                        // Everything else requires authentication
                         .anyRequest().authenticated()
                 )
-
-                // -------------------------------------------------
-                // JWT filter
-                // -------------------------------------------------
                 .addFilterBefore(
                         jwtAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class
@@ -114,54 +78,35 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // =============================================================
-    // CORS CONFIGURATION
-    // =============================================================
-
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
 
-        CorsConfiguration configuration =
-                new CorsConfiguration();
+        List<String> allowedOrigins = new ArrayList<>();
+        allowedOrigins.add("http://localhost:3000");
 
-        configuration.setAllowedOrigins(
-                List.of("http://localhost:3000")
-        );
+        if (frontendUrl != null
+                && !frontendUrl.isBlank()
+                && !allowedOrigins.contains(frontendUrl)) {
+            allowedOrigins.add(frontendUrl);
+        }
 
+        configuration.setAllowedOrigins(allowedOrigins);
         configuration.setAllowedMethods(
-                List.of(
-                        "GET",
-                        "POST",
-                        "PUT",
-                        "DELETE",
-                        "OPTIONS"
-                )
+                List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
         );
-
-        configuration.setAllowedHeaders(
-                List.of("*")
-        );
-
+        configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
 
-        source.registerCorsConfiguration(
-                "/**",
-                configuration
-        );
-
+        source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 
-    // =============================================================
-    // PASSWORD ENCODER
-    // =============================================================
-
     @Bean
     public PasswordEncoder passwordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
 }

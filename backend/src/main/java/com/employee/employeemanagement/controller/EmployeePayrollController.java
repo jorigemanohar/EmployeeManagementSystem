@@ -15,7 +15,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/employee/payroll")
-@CrossOrigin(origins = "http://localhost:3000")
 public class EmployeePayrollController {
 
     private final PayrollRepository payrollRepository;
