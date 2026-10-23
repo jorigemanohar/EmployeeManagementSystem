@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL:
+    process.env.REACT_APP_API_URL ||
+    "http://localhost:8080/api",
 
   headers: {
     "Content-Type": "application/json",
@@ -14,18 +16,14 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-
-    const token =
-      localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     if (token) {
-      config.headers.Authorization =
-        `Bearer ${token}`;
+      config.headers.Authorization = `Bearer ${token}`;
     }
 
     return config;
   },
-
   (error) => {
     return Promise.reject(error);
   }
@@ -39,27 +37,13 @@ api.interceptors.response.use(
   (response) => {
     return response;
   },
-
   (error) => {
+    if (error.response && error.response.status === 401) {
+      console.warn("Authentication expired or invalid.");
 
-    if (
-      error.response &&
-      error.response.status === 401
-    ) {
+      localStorage.removeItem("token");
 
-      console.warn(
-        "Authentication expired or invalid."
-      );
-
-      localStorage.removeItem(
-        "token"
-      );
-
-      /*
-       * Reload the application.
-       * App.js will detect that no token
-       * exists and display the Login page.
-       */
+      // Return the user to the login page.
       window.location.reload();
     }
 

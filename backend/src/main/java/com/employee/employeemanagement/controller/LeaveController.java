@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/leaves")
-@CrossOrigin(origins = "http://localhost:3000")
 public class LeaveController {
 
     private final LeaveService leaveService;
